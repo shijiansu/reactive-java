@@ -3,6 +3,13 @@
 ![](https://img.shields.io/badge/development%20year-2020-orange)
 ![](https://img.shields.io/badge/license-MIT-lightgrey)
 
+--------------------------------------------------------------------------------
+
+- reactor3-by-simonbasle - examples of 4 testing scenario - words processing; hello world for subscription test; first emitting; alphabet with StepVerifier verification
+- reactor3-by-yjmyzz - examples of comprehensive test cases for mono / flux apis
+
+--------------------------------------------------------------------------------
+
 Reactor 性能相当高, 在最新的硬件平台上, 使用无堵塞分发器每秒钟可处理 1500 万事件.
 
 提供了下列功能的替代函数

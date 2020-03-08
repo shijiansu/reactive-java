@@ -18,7 +18,7 @@ public class Reactor3Test {
       Arrays.asList("the", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
   @Test
-  public void words() {
+  public void _1_1_words() {
     Flux<String> fewWords = Flux.just("Hello", "World");
     Flux<String> manyWords = Flux.fromIterable(words);
 
@@ -28,7 +28,7 @@ public class Reactor3Test {
   }
 
   @Test
-  public void missing_letters() {
+  public void _1_2_missing_letters() {
     Flux<String> manyLetters =
         Flux.fromIterable(words)
             .flatMap(word -> Flux.fromArray(word.split("")))
@@ -41,7 +41,7 @@ public class Reactor3Test {
   }
 
   @Test
-  public void letters() {
+  public void _1_3_letters() {
     Mono<String> s = Mono.just("s");
     Flux<String> manyLetters =
         Flux.fromIterable(words)
@@ -56,7 +56,7 @@ public class Reactor3Test {
   }
 
   @Test
-  public void missing_world() {
+  public void _2_1_missing_world() {
     Flux<String> helloPauseWorld =
         Mono.just("Hello").concatWith(Mono.just("world").delaySubscription(Duration.ofMillis(500)));
     // 在主线程里对事件源进行订阅无法完成更加复杂的异步操作,
@@ -65,7 +65,7 @@ public class Reactor3Test {
   }
 
   @Test
-  public void hello_world() {
+  public void _2_2_hello_world() {
     Flux<String> helloPauseWorld =
         Mono.just("Hello").concatWith(Mono.just("world").delaySubscription(Duration.ofMillis(500)));
     // toItetable and toStream will block
@@ -73,7 +73,7 @@ public class Reactor3Test {
   }
 
   @Test
-  public void firstEmitting() {
+  public void _3_first_emitting() {
     Mono<String> a = Mono.just("oops I'm late").delaySubscription(Duration.ofMillis(450));
     Flux<String> b =
         Flux.just("let's get", "the party", "started").delayElements(Duration.ofMillis(400));
@@ -90,13 +90,13 @@ public class Reactor3Test {
   }
 
   @Test
-  public void alphabet5_limits_to_z() {
+  public void _4_1_alphabet5_limits_to_z() {
     Reactor3Test test = new Reactor3Test();
     StepVerifier.create(test.alphabet5('x')).expectNext("x", "y", "z").expectComplete().verify();
   }
 
   @Test
-  public void alphabet5_limits_to_z_is_alphabetical_char() {
+  public void _4_2_alphabet5_limits_to_z_is_alphabetical_char() {
     Reactor3Test test = new Reactor3Test();
     StepVerifier.create(test.alphabet5('x'))
         .consumeNextWith(c -> assertTrue(c.matches("[a-z]"), "first is alphabetic"))
@@ -107,7 +107,7 @@ public class Reactor3Test {
   }
 
   @Test
-  public void verify_with_delay() {
+  public void _4_3_verify_with_delay() {
     Reactor3Test test = new Reactor3Test();
     Duration testDuration =
         StepVerifier.withVirtualTime(() -> test.withDelay("foo", 30))
