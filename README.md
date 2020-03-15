@@ -10,6 +10,12 @@
 
 --------------------------------------------------------------------------------
 
+# Execute all tests in project / sub-projects
+
+`/bin/bash run-project-test.sh`
+
+# Reactor性能
+
 Reactor 性能相当高, 在最新的硬件平台上, 使用无堵塞分发器每秒钟可处理 1500 万事件.
 
 提供了下列功能的替代函数
