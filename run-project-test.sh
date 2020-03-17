@@ -28,7 +28,7 @@ echo "--------------------------------------------------------------------------
 echo "v0.0.1 - 20200313"
 echo ""
 
-BASEDIR=$(dirname "$0")
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 # echo "$BASEDIR"
 
 # execute all maven project(s) in this folder
