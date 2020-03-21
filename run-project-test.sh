@@ -1,9 +1,14 @@
 #!/bin/bash
 
+function log {
+  local message=$1
+  echo "[PROJECT TEST] $message"
+}
+
 function execute_maven {
   local d="$1"
   if [[ -f pom.xml ]]; then # maven project
-    printf "%s: " "$d" # no new line
+    printf "[PROJECT TEST] %s: " "$d" # no new line
     if [[ -f mvnw ]]; then response=$(./mvnw clean test); else response=$(mvn clean test); fi
     if [[ "$(echo "$response" | grep "BUILD SUCCESS")" != "" ]]; then # success
       echo "Test successfully... ..."
@@ -15,21 +20,12 @@ function execute_maven {
   fi
 }
 
-echo ""
-echo "---------------------------------------------------------------------------"
-echo "  ____                ____            _           _     _____         _    "
-echo " |  _ \ _   _ _ __   |  _ \ _ __ ___ (_) ___  ___| |_  |_   _|__  ___| |_  "
-echo " | |_) | | | | '_ \  | |_) | '__/ _ \| |/ _ \/ __| __|   | |/ _ \/ __| __| "
-echo " |  _ <| |_| | | | | |  __/| | | (_) | |  __/ (__| |_    | |  __/\__ \ |_  "
-echo " |_| \_\\__,_|_| |_| |_|   |_|  \___// |\___|\___|\__|   |_|\___||___/\__| "
-echo "                                   |__/                                    "
-echo "---------------------------------------------------------------------------"
-# http://patorjk.com/software/taag/#p=display&f=Standard&t=Run%20Project%20Test
-echo "v0.0.1 - 20200313"
-echo ""
-
+repo_test_report="$1"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-# echo "$BASEDIR"
+echo "--------------------------------------------------------------------------------"
+log "v0.0.2 - 20200321"
+log "$BASEDIR"
+log ""
 
 # execute all maven project(s) in this folder
 succ=0
@@ -51,6 +47,11 @@ else
   done
 fi
 
-echo "--------------------------------------------------------------------------------"
-echo "[SUMMARY] Total success: $succ; Total failed: $failed"
-echo "--------------------------------------------------------------------------------"
+echo ""
+log "Total success: $succ; Total failed: $failed"
+echo ""
+
+# append the project test result into repo rest report
+if [[ -f "$repo_test_report" ]]; then
+  printf "%-50s   SUCCESS: %2d   FAILED: %2d\n" "${BASEDIR##*/}" $succ $failed >> "$repo_test_report"
+fi
