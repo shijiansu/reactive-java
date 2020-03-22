@@ -1,11 +1,11 @@
 #!/bin/bash
 
-function log {
+function log() {
   local message=$1
   echo "[REPO TEST] $message"
 }
 
-function execute_project_test {
+function execute_project_test() {
   local r="$1"
   test="$(pwd)/run-project-test.sh"
   if [[ -f "${test}" ]]; then
@@ -36,14 +36,14 @@ touch "$test_report"
 
 # execute all maven project(s) in this folder
 # if it is singel project
-if [[ -f "run-project-test.sh" ]]; then
+if [[ -f "run-project-test.sh" && ! -f ".not-project-test" ]]; then
   execute_project_test "$test_report"
 else
-# for multiple projects
+  # for multiple projects
   for d in *; do
     if [[ -d "$d" ]]; then
       cd "$d" || exit
-        execute_project_test "$test_report"
+      execute_project_test "$test_report"
       cd "$BASEDIR" || exit
     fi
   done
@@ -53,8 +53,7 @@ fi
 echo "-------------------------------------------------------------------------------------------"
 log "TEST REPORT"
 log ""
-while IFS= read -r line
-do
+while IFS= read -r line; do
   log "$line"
-done < "$test_report"
+done <"$test_report"
 echo "-------------------------------------------------------------------------------------------"
