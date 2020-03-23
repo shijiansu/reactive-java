@@ -11,6 +11,10 @@ You will mostly need these 3 classes Javadoc:
 
 Fix the TODO one by one in Part01 to Part11 main classes in io.pivotal.literx package to make unit tests green
 
+# Java development environment
+
+`sdk list java && sdk current java`
+
 # Setup Maven wrapper
 
 - https://github.com/takari/maven-wrapper
