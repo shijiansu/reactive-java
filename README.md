@@ -1,7 +1,14 @@
 ![](https://img.shields.io/badge/language-java-blue)
 ![](https://img.shields.io/badge/technology-reactor3-blue)
 ![](https://img.shields.io/badge/development%20year-2020-orange)
+![](https://img.shields.io/badge/contributor-shijiansu-purple)
 ![](https://img.shields.io/badge/license-MIT-lightgrey)
+
+![](https://img.shields.io/github/languages/top/shijiansu/reactive-java-reactor3)
+![](https://img.shields.io/github/languages/count/shijiansu/reactive-java-reactor3)
+![](https://img.shields.io/github/languages/code-size/shijiansu/reactive-java-reactor3)
+![](https://img.shields.io/github/repo-size/shijiansu/reactive-java-reactor3)
+![](https://img.shields.io/github/last-commit/shijiansu/reactive-java-reactor3?color=red)
 
 --------------------------------------------------------------------------------
 
