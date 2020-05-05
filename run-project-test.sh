@@ -57,5 +57,6 @@ echo ""
 
 # append the project test result into repo rest report with formatted by tab
 if [[ -f "$repo_test_report" ]]; then
-  printf "%-50s   SUCCESS: %2d   FAILED: %2d\n" "${BASEDIR##*/}" $succ $failed >> "$repo_test_report"
+  # with format and placeholder
+  printf "%-80s   SUCCESS: %2d   FAILED: %2d\n" "${BASEDIR##*/}" $succ $failed >> "$repo_test_report"
 fi
