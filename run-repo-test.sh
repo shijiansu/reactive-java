@@ -16,7 +16,6 @@ function execute_project_test() {
   fi
 }
 
-clear
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 echo "-------------------------------------------------------------------------------------------"
 echo "  ____                ____                      _ _                     _____         _    "
@@ -27,28 +26,7 @@ echo " |_| \_\\__,_|_| |_| |_| \_\___| .__/ \___/|___/_|\__\___/|_|   \__, |   |
 echo "                               |_|                              |___/                      "
 echo "-------------------------------------------------------------------------------------------"
 # http://patorjk.com/software/taag/#p=display&f=Standard&t=Run%20Repository%20Test
-log "Execute 'run-project-test.sh' for current or the sub-folders"
-log "This is the wrapper of 'run-project-test.sh'"
-log "How to use:"
-log "1. By default it is single project because there is always 'run-project-test.sh' in root folder;"
-log "2. Put '.not-project-test' to root folder, then it will scaner sub-folders;"
-log "3. Print the test report with total succ/failed project test"
-log "4. Enable 2 levels by adding '.not-project-test' to root folder and copying 'run-project-test.sh' to sub-folders"
-log "   Refer to 'microservice-dubbo:"
-log "   microservice-dubbo"
-log "     |- .not-project-test (skip current folder - run-project-test.sh)"
-log "     |- run-repo-test.sh"
-log "     |- run-project-test.sh (will be skipped)"
-log "       |- 1_dubbo-springboot2"
-log "          |- run-project-test.sh (copied from root folder - will be triggered)"
-log "          |- pom.xml"
-log "          |- dubbo-service"
-log "          |- dubbo-provider"
-log "          |- dubbo-consumer"
-log "Command: run-repo-test.sh"
-echo "--------------------------------------------------------------------------------"
-log "v0.0.1 - 20200321"
-log "$BASEDIR"
+log "v0.0.1 - 20200321 - $BASEDIR"
 log ""
 
 # test report - to handle the test result from 'run-project-test.sh'
