@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # utilities to print with prefix
-function log {
+function log() {
   local message=$1
   echo "[PROJECT TEST] $message"
 }
 
 # execute maven clean test if there is pom.xml
-function execute_maven {
+function execute_maven() {
   local d="$1"
   # use "pom.xml" to tell if maven project
   if [[ -f pom.xml ]]; then
     printf "[PROJECT TEST] %s: " "$d" # printf not to printing a line seperator
     # choose the maven exector, use maven wrapper or maven installed in local
-    if [[ -f mvnw ]]; then response=$(./mvnw clean test); else response=$(mvn clean test); fi
+    if [[ -f mvnw ]]; then local response=$(./mvnw clean test); else local response=$(mvn clean test); fi
     # use "BUILD SUCCESS" as successful indicator
     if [[ "$(echo "$response" | grep "BUILD SUCCESS")" != "" ]]; then # success
       echo "Test successfully... ..."
@@ -58,5 +58,7 @@ echo ""
 # append the project test result into repo rest report with formatted by tab
 if [[ -f "$repo_test_report" ]]; then
   # with format and placeholder
+  ## %-80s: append 80 spaces on the right, if not reach to 80
+  ## ${BASEDIR##*/}: only take sub string after the last /
   printf "%-80s   SUCCESS: %2d   FAILED: %2d\n" "${BASEDIR##*/}" $succ $failed >> "$repo_test_report"
 fi

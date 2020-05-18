@@ -9,7 +9,7 @@ function log() {
 # execute project test if there is pom.xml
 function execute_project_test() {
   local r="$1" # repo-test-report
-  test="$(pwd)/run-project-test.sh"
+  local test="$(pwd)/run-project-test.sh"
   # because this script is a wrapper script, the real execution logic would be 'run-project-test.sh'
   if [[ -f "${test}" ]]; then
     /bin/bash "${test}" "$1"
